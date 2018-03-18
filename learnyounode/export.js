@@ -10,9 +10,11 @@ fs.readdir(`${path}`, function (error, data){
 	for (let i = 0; i < arrFiltered.length; i++){
 		console.log(arrFiltered[i]);	
 	};
+
+callback(null, data);
+
 });
 
-callback();
 };
 
  
