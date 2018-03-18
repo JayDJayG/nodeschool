@@ -1,9 +1,8 @@
-
-module.exports = function ( path, endFile, callback){
+module.exports = function callFromAway ( path, endFile, callback){
 	
 fs.readdir(`${path}`, function (error, data){
 	
-	if (error)console.log(error);
+	if (error) return callback(error);
 	
 	let arrFiltered = data.filter(str => str.endsWith(endFile));
 	
@@ -16,7 +15,3 @@ callback(null, data);
 });
 
 };
-
- 
-
-
