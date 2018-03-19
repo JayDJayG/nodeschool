@@ -1,17 +1,14 @@
-module.exports = function callFromAway ( path, endFile, callback){
-	
-fs.readdir(`${path}`, function (error, data){
-	
-	if (error) return callback(error);
-	
-	let arrFiltered = data.filter(str => str.endsWith(endFile));
-	
-	for (let i = 0; i < arrFiltered.length; i++){
-		console.log(arrFiltered[i]);	
-	};
+var fs = require('fs');
+var path = require('path');
 
-callback(null, data);
-
-});
-
-};
+module.exports = function (directory, extension, callback) {
+    fs.readdir(directory, function (err, list) {
+        if (err) return callback(err);
+        else {
+            list = list.filter(function (file) {
+                if(path.extname(file) === '.' + extension) return true;
+            })
+            return callback(null, list);
+        }
+    })
+}
